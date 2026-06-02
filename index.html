@@ -147,14 +147,18 @@ const cols = line.split(",");
 return {
 name: cols[1] || "",
 sponsor: cols[2] || "",
-score: Number(cols[3]) || 0
+score: parseInt(cols[3]) || 0
 };
 
 });
 
-rows.sort((a,b)=>b.score-a.score);
+const cleanRows = rows.filter(
+item => item.name && item.score > 0
+);
 
-render(rows.slice(0,10));
+cleanRows.sort((a,b)=>b.score-a.score);
+
+render(cleanRows.slice(0,10));
 
 }catch(error){
 
