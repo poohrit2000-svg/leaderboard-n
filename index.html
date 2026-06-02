@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TOP LEADERS - สร้าง M สร้างล้าน</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Tahoma,sans-serif;
+}
+
+body{
+background:#0c4a1d;
+padding:20px;
+min-height:100vh;
+}
+
+.container{
+max-width:1000px;
+margin:auto;
+}
+
+.header{
+text-align:center;
+color:white;
+margin-bottom:20px;
+}
+
+.header h1{
+font-size:50px;
+color:#ffd700;
+}
+
+.header p{
+font-size:20px;
+}
+
+.card{
+display:flex;
+align-items:center;
+background:white;
+border-radius:15px;
+overflow:hidden;
+margin-bottom:12px;
+box-shadow:0 4px 12px rgba(0,0,0,.25);
+}
+
+.rank{
+width:90px;
+font-size:36px;
+font-weight:bold;
+text-align:center;
+}
+
+.info{
+flex:1;
+padding:18px;
+}
+
+.name{
+font-size:24px;
+font-weight:bold;
+}
+
+.sponsor{
+font-size:14px;
+color:#666;
+margin-top:5px;
+}
+
+.score{
+width:140px;
+background:#136b2b;
+color:white;
+font-size:36px;
+font-weight:bold;
+text-align:center;
+padding:20px;
+}
+
+.updated{
+text-align:center;
+color:white;
+margin-top:20px;
+}
+
+@media(max-width:768px){
+
+.rank{
+width:60px;
+font-size:24px;
+}
+
+.name{
+font-size:18px;
+}
+
+.score{
+width:90px;
+font-size:24px;
+}
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="header">
+<h1>🏆 TOP LEADERS</h1>
+<p>สร้าง M สร้างล้าน</p>
+</div>
+
+<div id="leaderboard">
+กำลังโหลดข้อมูล...
+</div>
+
+<div class="updated" id="updated"></div>
+
+</div>
+
+<script>
+
+const CSV_URL =
+"https://docs.google.com/spreadsheets/d/e/2PACX-1vSgvMGv0b-9AlFLDM9_u5-K-EZ7kz0fAg-reb7WV44OKoYR9jBkcxgaVlEwGn-hQQ/pub?gid=1244142115&single=true&output=csv";
+
+async function loadData(){
+
+try{
+
+const response = await fetch(CSV_URL);
+const csv = await response.text();
+
+const lines = csv.trim().split("\n");
+
+const rows = lines.slice(1).map(line => {
+
+const cols = line.split(",");
+
+return {
+name: cols[1] || "",
+sponsor: cols[2] || "",
+score: Number(cols[3]) || 0
+};
+
+});
+
+rows.sort((a,b)=>b.score-a.score);
+
+render(rows.slice(0,10));
+
+}catch(error){
+
+document.getElementById("leaderboard").innerHTML =
+"<h2 style='color:white'>โหลดข้อมูลไม่สำเร็จ</h2>";
+
+console.log(error);
+
+}
+
+}
+
+function render(data){
+
+const board = document.getElementById("leaderboard");
+
+board.innerHTML = "";
+
+data.forEach((item,index)=>{
+
+let rank = index + 1;
+
+if(index===0) rank="🥇";
+if(index===1) rank="🥈";
+if(index===2) rank="🥉";
+
+board.innerHTML += `
+<div class="card">
+
+<div class="rank">
+${rank}
+</div>
+
+<div class="info">
+<div class="name">${item.name}</div>
+<div class="sponsor">ผู้สปอนเซอร์ : ${item.sponsor}</div>
+</div>
+
+<div class="score">
+${item.score} M
+</div>
+
+</div>
+`;
+
+});
+
+document.getElementById("updated").innerHTML =
+"อัปเดตล่าสุด : " +
+new Date().toLocaleString("th-TH");
+
+}
+
+loadData();
+
+setInterval(loadData,60000);
+
+</script>
+
+</body>
+</html>
