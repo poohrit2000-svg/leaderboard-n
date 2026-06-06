@@ -157,6 +157,12 @@ margin:0 auto 15px;">
 const CSV_URL =
 "https://docs.google.com/spreadsheets/d/e/2PACX-1vSgvMGv0b-9AlFLDM9_u5-K-EZ7kz0fAg-reb7WV44OKoYR9jBkcxgaVlEwGn-hQQ/pub?gid=1244142115&single=true&output=csv";
 
+const cachedData = localStorage.getItem("leaderboardData");
+
+if(cachedData){
+render(JSON.parse(cachedData));
+}
+
 async function loadData(){
 
 document.getElementById("leaderboard").innerHTML =
@@ -188,6 +194,11 @@ item => item.name && item.score > 0
 cleanRows.sort((a,b)=>b.score-a.score);
 
 render(cleanRows.slice(0,37));
+
+localStorage.setItem(
+"leaderboardData",
+JSON.stringify(cleanRows.slice(0,37))
+);
 
 }catch(error){
 
@@ -278,9 +289,9 @@ document.getElementById("countdown").innerHTML =
 
 updateCountdown();
 
-setInterval(updateCountdown,60000);
-
 loadData();
+
+setInterval(updateCountdown,60000);
 
 setInterval(loadData,60000);
 
