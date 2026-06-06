@@ -269,13 +269,13 @@ Math.floor((diff % (1000*60))
 / 1000);
 
 document.getElementById("countdown").innerHTML =
-`⏳ เหลือเวลา ${days} วัน ${hours} ชม. ${minutes} นาที ${seconds} วินาที`;
+`⏳ เหลือเวลา ${days} วัน ${hours} ชม.`;
 
 }
 
 updateCountdown();
 
-setInterval(updateCountdown,1000);
+setInterval(updateCountdown,60000);
 
 setInterval(loadData,60000);
 
