@@ -103,9 +103,9 @@ display:inline-block;
 }
 
 @media(max-width:768px){
+
 #countdown{
 font-size:18px;
-}
 }
 
 .rank{
@@ -121,7 +121,9 @@ font-size:18px;
 width:90px;
 font-size:24px;
 }
+
 }
+
 </style>
 
 </head>
@@ -164,9 +166,6 @@ render(JSON.parse(cachedData));
 }
 
 async function loadData(){
-
-document.getElementById("leaderboard").innerHTML =
-"<h2 style='color:white'>กำลังอัปเดตข้อมูล...</h2>";
 
 try{
 
