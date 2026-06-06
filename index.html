@@ -192,11 +192,11 @@ item => item.name && item.score > 0
 
 cleanRows.sort((a,b)=>b.score-a.score);
 
-render(cleanRows.slice(0,37));
+render(cleanRows);
 
 localStorage.setItem(
 "leaderboardData",
-JSON.stringify(cleanRows.slice(0,37))
+JSON.stringify(cleanRows)
 );
 
 }catch(error){
