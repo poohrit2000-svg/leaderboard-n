@@ -159,6 +159,9 @@ const CSV_URL =
 
 async function loadData(){
 
+document.getElementById("leaderboard").innerHTML =
+"<h2 style='color:white'>กำลังอัปเดตข้อมูล...</h2>";
+
 try{
 
 const response = await fetch(CSV_URL);
@@ -276,6 +279,8 @@ document.getElementById("countdown").innerHTML =
 updateCountdown();
 
 setInterval(updateCountdown,60000);
+
+loadData();
 
 setInterval(loadData,60000);
 
