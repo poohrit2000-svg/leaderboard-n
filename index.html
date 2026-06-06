@@ -91,7 +91,22 @@ color:white;
 margin-top:20px;
 }
 
+#countdown{
+color:#fff;
+font-size:32px;
+font-weight:bold;
+margin-top:15px;
+padding:15px;
+background:rgba(255,255,255,0.15);
+border-radius:12px;
+display:inline-block;
+}
+
 @media(max-width:768px){
+#countdown{
+font-size:18px;
+}
+}
 
 .rank{
 width:60px;
@@ -124,6 +139,8 @@ margin:0 auto 15px;">
 
 <h1>🏆 TOP LEADERS</h1>
 <p>สร้าง M สร้างล้าน</p>
+
+<div id="countdown"></div>
 
 </div>
 
@@ -167,7 +184,7 @@ item => item.name && item.score > 0
 
 cleanRows.sort((a,b)=>b.score-a.score);
 
-render(cleanRows.slice(0,30));
+render(cleanRows.slice(0,37));
 
 }catch(error){
 
@@ -221,7 +238,44 @@ new Date().toLocaleString("th-TH");
 
 }
 
-loadData();
+function updateCountdown(){
+
+const targetDate =
+new Date("2026-07-31T23:59:59");
+
+const now = new Date();
+
+const diff = targetDate - now;
+
+if(diff <= 0){
+document.getElementById("countdown").innerHTML =
+"🎉 สิ้นสุดโครงการแล้ว";
+return;
+}
+
+const days =
+Math.floor(diff / (1000*60*60*24));
+
+const hours =
+Math.floor((diff % (1000*60*60*24))
+/ (1000*60*60));
+
+const minutes =
+Math.floor((diff % (1000*60*60))
+/ (1000*60));
+
+const seconds =
+Math.floor((diff % (1000*60))
+/ 1000);
+
+document.getElementById("countdown").innerHTML =
+`⏳ เหลือเวลา ${days} วัน ${hours} ชม. ${minutes} นาที ${seconds} วินาที`;
+
+}
+
+updateCountdown();
+
+setInterval(updateCountdown,1000);
 
 setInterval(loadData,60000);
 
