@@ -264,6 +264,11 @@ const board = document.getElementById("leaderboard");
 
 board.innerHTML = "";
 
+const total = data.reduce((sum, item) => sum + item.score, 0);
+
+document.getElementById("totalScore").textContent =
+    total.toLocaleString("th-TH");
+
 data.forEach((item,index)=>{
 
 let rank = index + 1;
