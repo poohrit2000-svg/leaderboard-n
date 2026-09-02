@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TOP LEADERS - สร้าง M สร้างล้าน</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Tahoma,sans-serif;
+}
+
+body{
+background:#0c4a1d;
+padding:20px;
+min-height:100vh;
+}
+
+.container{
+width:100%;
+max-width:1600px;
+margin:auto;
+}
+
+.header{
+text-align:center;
+color:white;
+margin-bottom:20px;
+
+background-image:url('background-01.png');
+background-size:cover;
+background-position:center;
+
+border-radius:20px;
+
+padding:50px 20px;
+
+min-height:500px;
+
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+
+position:relative;
+overflow:hidden;
+}
+  
+.header::before{
+content:"";
+position:absolute;
+top:0;
+left:0;
+right:0;
+bottom:0;
+background:rgba(0,0,0,0.15);
+}
+
+.header > *{
+position:relative;
+z-index:1;
+}
+
+.header h1{
+font-size:90px;
+font-weight:900;
+color:#ffd700;
+text-shadow:
+0 0 10px rgba(0,0,0,.8),
+0 4px 20px rgba(0,0,0,.8);
+margin-top:10px;
+}
+
+.header p{
+font-size:60px;
+font-weight:900;
+color:white;
+text-shadow:
+0 0 10px rgba(0,0,0,.8),
+0 4px 20px rgba(0,0,0,.8);
+margin-top:10px;
+}
+
+.card{
+display:flex;
+align-items:center;
+background:white;
+border-radius:15px;
+overflow:hidden;
+margin-bottom:12px;
+box-shadow:0 4px 12px rgba(0,0,0,.25);
+}
+
+.rank{
+width:90px;
+font-size:36px;
+font-weight:bold;
+text-align:center;
+}
+
+.info{
+flex:1;
+padding:18px;
+}
+
+.name{
+font-size:24px;
+font-weight:bold;
+}
+
+.sponsor{
+font-size:14px;
+color:#666;
+margin-top:5px;
+}
+
+.score{
+width:140px;
+background:#136b2b;
+color:white;
+font-size:36px;
+font-weight:bold;
+text-align:center;
+padding:20px;
+}
+
+.updated{
+text-align:center;
+color:white;
+margin-top:20px;
+}
+
+#countdown{
+color:#fff;
+font-size:42px;
+font-weight:bold;
+margin-top:15px;
+padding:15px;
+background:rgba(255,255,255,0.15);
+border-radius:12px;
+display:inline-block;
+}
+
+
+.phase2-box{
+margin-top:20px;
+text-align:center;
+}
+
+.phase2-title{
+font-size:72px;
+font-weight:900;
+color:#FFD700;
+text-shadow:
+0 0 10px rgba(0,0,0,.8),
+0 4px 20px rgba(0,0,0,.8);
+margin-bottom:20px;
+line-height:1.1;
+}
+
+.countdown-wrap{
+width:700px;
+max-width:90%;
+margin:auto;
+}
+
+.progress-bar{
+width:100%;
+height:28px;
+background:rgba(255,255,255,.25);
+border-radius:30px;
+overflow:hidden;
+margin-bottom:10px;
+}
+
+.progress-fill{
+height:100%;
+background:linear-gradient(90deg,#00ff66,#ffd700,#ff4500);
+transition:1s;
+}
+
+.countdown-text{
+font-size:22px;
+font-weight:bold;
+color:white;
+}
+
+.target-box{
+margin-top:10px;
+}
+
+.target-bar{
+width:500px;
+max-width:100%;
+height:12px;
+background:#ddd;
+border-radius:20px;
+overflow:hidden;
+margin-top:5px;
+}
+
+.target-fill{
+height:100%;
+background:linear-gradient(90deg,#00b140,#39ff14);
+}
+
+.target-text{
+font-size:13px;
+font-weight:bold;
+margin-top:4px;
+color:#444;
+}
+
+
+@media(max-width:768px){
+
+#countdown{
+font-size:18px;
+}
+.phase2-box{
+margin-top:20px;
+text-align:center;
+}
+
+.phase2-title{
+font-size:42px;
+font-weight:900;
+color:#ffd700;
+text-shadow:
+0 0 10px rgba(0,0,0,.8),
+0 4px 20px rgba(0,0,0,.8);
+margin-bottom:15px;
+}
+
+.countdown-wrap{
+width:700px;
+max-width:90%;
+margin:auto;
+}
+
+.progress-bar{
+width:100%;
+height:26px;
+background:rgba(255,255,255,.25);
+border-radius:30px;
+overflow:hidden;
+}
+
+.progress-fill{
+height:100%;
+background:linear-gradient(
+90deg,
+#00ff66,
+#ffd700,
+#ff4500
+);
+transition:1s;
+}
+
+.countdown-text{
+margin-top:10px;
+font-size:22px;
+font-weight:bold;
+color:white;
+}
+
+.target-box{
+margin-top:8px;
+}
+
+.target-bar{
+height:10px;
+background:#ddd;
+border-radius:20px;
+overflow:hidden;
+}
+
+.target-fill{
+height:100%;
+background:linear-gradient(
+90deg,
+#00b140,
+#39ff14
+);
+}
+
+.target-text{
+font-size:12px;
+font-weight:bold;
+margin-top:4px;
+color:#555;
+}
+
+.rank{
+width:60px;
+font-size:24px;
+}
+
+.name{
+font-size:18px;
+}
+
+.score{
+width:90px;
+font-size:24px;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="header">
+
+<img src="iat-logo.png"
+style="max-width:200px;
+display:block;
+margin:0 auto 15px;">
+
+<div class="title-box">
+<h1>
+🏆 TOP<br>
+LEADERS
+</h1>
+<p>สร้าง M สร้างล้าน</p>
+</div>
+
+<div class="phase2-box">
+
+<div class="phase2-title">
+🎯 โครงการเฟส 2 เป้าหมาย 2,000 ชิ้น
+</div>
+
+<div id="countdown"></div>
+
+</div>
+
+</div>
+<div id="leaderboard">
+กำลังโหลดข้อมูล...
+</div>
+
+<div class="updated" id="updated"></div>
+
+</div>
+
+<script>
+
+const CSV_URL =
+"https://docs.google.com/spreadsheets/d/e/2PACX-1vSgvMGv0b-9AlFLDM9_u5-K-EZ7kz0fAg-reb7WV44OKoYR9jBkcxgaVlEwGn-hQQ/pub?gid=1244142115&single=true&output=csv";
+
+const cachedData = localStorage.getItem("leaderboardData");
+
+if(cachedData){
+render(JSON.parse(cachedData));
+}
+
+async function loadData(){
+
+try{
+
+const response = await fetch(CSV_URL);
+const csv = await response.text();
+
+const lines = csv.trim().split("\n");
+
+const rows = lines.slice(1).map(line => {
+
+const cols = line.split(",");
+
+return {
+name: cols[1] || "",
+sponsor: cols[2] || "",
+score: parseInt(cols[3]) || 0
+};
+
+});
+
+const cleanRows = rows.filter(
+item => item.name && item.score >= 10
+);
+
+cleanRows.sort((a,b)=>b.score-a.score);
+
+render(cleanRows);
+
+localStorage.setItem(
+"leaderboardData",
+JSON.stringify(cleanRows)
+);
+
+}catch(error){
+
+document.getElementById("leaderboard").innerHTML =
+"<h2 style='color:white'>โหลดข้อมูลไม่สำเร็จ</h2>";
+
+console.log(error);
+
+}
+
+}
+
+function render(data){
+
+const board = document.getElementById("leaderboard");
+
+board.innerHTML = "";
+
+data.forEach((item,index)=>{
+
+let rank = index + 1;
+
+if(index===0) rank="🥇";
+if(index===1) rank="🥈";
+if(index===2) rank="🥉";
+
+board.innerHTML += `
+<div class="card">
+
+<div class="rank">
+${rank}
+</div>
+
+<div class="info">
+
+<div class="name">
+${item.name}
+</div>
+
+<div class="sponsor">
+ผู้สปอนเซอร์ : ${item.sponsor}
+</div>
+
+<div class="target-box">
+
+<div class="target-bar">
+
+<div
+class="target-fill"
+style="width:${Math.min((item.score*100/2000)*100,100)}%">
+</div>
+
+</div>
+
+<div class="target-text">
+
+${item.score*100}
+/
+2000 ชิ้น
+
+(${Math.min((item.score*100/2000)*100,100).toFixed(0)}%)
+
+</div>
+
+</div>
+
+</div>
+
+<div class="score">
+${item.score} M
+</div>
+
+</div>
+`;
+
+});
+
+document.getElementById("updated").innerHTML =
+"อัปเดตล่าสุด : " +
+new Date().toLocaleString("th-TH");
+
+}
+function updateCountdown(){
+
+const startDate =
+new Date("2026-09-01T00:00:00");
+
+const endDate =
+new Date("2026-10-30T23:59:59");
+
+const now = new Date();
+
+const total = endDate - startDate;
+const remain = endDate - now;
+
+if(remain <= 0){
+
+document.getElementById("countdown").innerHTML =
+"🎉 สิ้นสุดโครงการแล้ว";
+
+return;
+}
+
+const days =
+Math.floor(remain/(1000*60*60*24));
+
+const percent =
+(remain / total) * 100;
+
+document.getElementById("countdown").innerHTML =
+
+`
+<div class="countdown-wrap">
+
+<div class="progress-bar">
+
+<div
+class="progress-fill"
+style="width:${percent}%">
+</div>
+
+</div>
+
+<div class="countdown-text">
+
+⏳ เหลืออีก ${days} วัน
+
+<br>
+
+สิ้นสุดโครงการ
+30 ตุลาคม 2569
+
+</div>
+
+</div>
+`;
+
+}
+updateCountdown();
+
+loadData();
+
+setInterval(updateCountdown,60000);
+
+setInterval(loadData,60000);
+
+</script>
+
+</body>
+</html>
