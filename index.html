@@ -190,7 +190,9 @@ LEADERS
 <p>สร้าง M สร้างล้าน</p>
 </div>
 
-<div id="countdown"></div>
+🎯 โครงการเฟส 2 เป้าหมาย 2,000 ชิ้น<br>
+📅 ระยะเวลาโครงการสิ้นสุด วันนี้ - 30 ตุลาคม 2569
+</div>
 
 </div>
 
@@ -235,7 +237,7 @@ score: parseInt(cols[3]) || 0
 });
 
 const cleanRows = rows.filter(
-item => item.name && item.score > 0
+item => item.name && item.score >= 10
 );
 
 cleanRows.sort((a,b)=>b.score-a.score);
@@ -299,38 +301,7 @@ new Date().toLocaleString("th-TH");
 
 }
 
-function updateCountdown(){
-
-const targetDate =
-new Date("2026-07-31T23:59:59");
-
-const now = new Date();
-
-const diff = targetDate - now;
-
-if(diff <= 0){
-document.getElementById("countdown").innerHTML =
-"🎉 สิ้นสุดโครงการแล้ว";
-return;
-}
-
-const days =
-Math.floor(diff / (1000*60*60*24));
-
-const hours =
-Math.floor((diff % (1000*60*60*24))
-/ (1000*60*60));
-
-document.getElementById("countdown").innerHTML =
-`⏳ เหลือเวลา ${days} วัน ${hours} ชม.`;
-
-}
-
-updateCountdown();
-
 loadData();
-
-setInterval(updateCountdown,60000);
 
 setInterval(loadData,60000);
 
