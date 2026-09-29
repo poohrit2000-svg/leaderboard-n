@@ -380,7 +380,8 @@ const cols = line.split(",");
 return {
 name: cols[1] || "",
 sponsor: cols[2] || "",
-score: parseInt(cols[3]) || 0
+score: parseInt(cols[3]) || 0,
+pieces: parseInt(cols[4]) || 0
 };
 
 });
@@ -446,13 +447,12 @@ ${item.name}
 
 <div
 class="target-fill"
-style="width:0%"
-</div>
-
+style="width:${Math.min(item.pieces/2000*100,100)}%">
 </div>
 
 <div class="target-text">
-0 / 2000 ชิ้น (0%)
+${item.pieces} / 2000 ชิ้น
+(${Math.min(item.pieces/2000*100,100).toFixed(0)}%)
 </div>
 
 </div>
