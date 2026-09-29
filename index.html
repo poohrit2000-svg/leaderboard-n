@@ -424,6 +424,11 @@ if(index===0) rank="🥇";
 if(index===1) rank="🥈";
 if(index===2) rank="🥉";
 
+const pieces = item.score * 100;
+const percent = Math.min((pieces / 2000) * 100,100);
+
+board.innerHTML += `
+
 board.innerHTML += `
 <div class="card">
 
@@ -447,16 +452,14 @@ ${item.name}
 
 <div
 class="target-fill"
-style="width:${Math.min(item.pieces/2000*100,100)}%">
+style="width:${percent}%">
 </div>
 
 </div>
 
 <div class="target-text">
-${item.pieces} / 2000 ชิ้น
-(${Math.min(item.pieces/2000*100,100).toFixed(0)}%)
-</div>
-
+${pieces} / 2000 ชิ้น
+(${percent.toFixed(0)}%)
 </div>
 
 </div>
