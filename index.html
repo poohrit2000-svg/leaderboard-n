@@ -424,10 +424,8 @@ if(index===0) rank="🥇";
 if(index===1) rank="🥈";
 if(index===2) rank="🥉";
 
-const pieces = item.score * 100;
+const pieces = item.pieces;
 const percent = Math.min((pieces / 2000) * 100,100);
-
-board.innerHTML += `
 
 board.innerHTML += `
 <div class="card">
